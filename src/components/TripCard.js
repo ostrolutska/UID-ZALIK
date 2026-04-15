@@ -6,6 +6,8 @@ export default function TripCard({ trip, onPress, onDelete }) {
   const totalSpent = trip.expenses.reduce((sum, e) => sum + e.amount, 0);
   const participantCount = trip.participants.length;
   const expenseCount = trip.expenses.length;
+  const budgetProgress = trip.budget ? Math.min(totalSpent / trip.budget, 1) : null;
+  const overBudget = trip.budget && totalSpent > trip.budget;
 
   return (
     <TouchableOpacity style={styles.card} onPress={onPress} activeOpacity={0.85}>
@@ -56,6 +58,29 @@ export default function TripCard({ trip, onPress, onDelete }) {
           </Text>
         </View>
       </View>
+
+      {budgetProgress !== null && (
+        <View style={styles.budgetContainer}>
+          <View style={styles.budgetLabels}>
+            <Text style={styles.budgetLabel}>Budget</Text>
+            <Text style={[styles.budgetAmount, overBudget && styles.overBudget]}>
+              {trip.budget.toFixed(2)} {trip.currency}
+              {overBudget ? ' (exceeded!)' : ''}
+            </Text>
+          </View>
+          <View style={styles.progressBar}>
+            <View
+              style={[
+                styles.progressFill,
+                {
+                  width: `${budgetProgress * 100}%`,
+                  backgroundColor: overBudget ? '#FF6B6B' : '#4A90D9',
+                },
+              ]}
+            />
+          </View>
+        </View>
+      )}
     </TouchableOpacity>
   );
 }
@@ -139,5 +164,40 @@ const styles = StyleSheet.create({
     fontSize: 15,
     fontWeight: '700',
     color: '#4A90D9',
+  },
+  budgetContainer: {
+    marginTop: 10,
+    paddingTop: 10,
+    borderTopWidth: 1,
+    borderTopColor: '#f0f0f0',
+  },
+  budgetLabels: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: 4,
+  },
+  budgetLabel: {
+    fontSize: 11,
+    color: '#aaa',
+    textTransform: 'uppercase',
+    letterSpacing: 0.5,
+  },
+  budgetAmount: {
+    fontSize: 11,
+    color: '#555',
+    fontWeight: '600',
+  },
+  overBudget: {
+    color: '#FF6B6B',
+  },
+  progressBar: {
+    height: 4,
+    backgroundColor: '#f0f0f0',
+    borderRadius: 2,
+    overflow: 'hidden',
+  },
+  progressFill: {
+    height: '100%',
+    borderRadius: 2,
   },
 });

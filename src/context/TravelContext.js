@@ -27,6 +27,7 @@ function reducer(state, action) {
         destination: action.payload.destination || '',
         participants: action.payload.participants,
         expenses: [],
+        budget: action.payload.budget ? parseFloat(action.payload.budget) : null,
         currency: action.payload.currency || 'UAH',
         createdAt: new Date().toISOString(),
       };

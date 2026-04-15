@@ -23,6 +23,7 @@ export default function AddTripScreen({ navigation }) {
   const [destination, setDestination] = useState('');
   const [description, setDescription] = useState('');
   const [currency, setCurrency] = useState('UAH');
+  const [budget, setBudget] = useState('');
   const [participantInput, setParticipantInput] = useState('');
   const [participants, setParticipants] = useState([]);
 
@@ -56,6 +57,7 @@ export default function AddTripScreen({ navigation }) {
       destination: destination.trim(),
       description: description.trim(),
       currency,
+      budget: budget.trim() || null,
       participants,
     });
 
@@ -111,6 +113,15 @@ export default function AddTripScreen({ navigation }) {
             </TouchableOpacity>
           ))}
         </View>
+
+        <Text style={styles.label}>Budget (optional)</Text>
+        <TextInput
+          style={styles.input}
+          placeholder={`Max budget in ${currency}`}
+          value={budget}
+          onChangeText={setBudget}
+          keyboardType="decimal-pad"
+        />
 
         <Text style={styles.label}>Participants *</Text>
         <View style={styles.participantInputRow}>
