@@ -99,6 +99,25 @@ export default function TripDetailScreen({ route, navigation }) {
               )}
             </View>
 
+            {/* Budget progress */}
+            {trip.budget && (
+              <View style={styles.budgetRow}>
+                <Text style={styles.budgetLabel}>
+                  Budget: {trip.budget.toFixed(2)} {trip.currency}
+                </Text>
+                <Text
+                  style={[
+                    styles.budgetRemaining,
+                    totalSpent > trip.budget ? styles.overBudget : null,
+                  ]}
+                >
+                  {totalSpent > trip.budget
+                    ? `Over by ${(totalSpent - trip.budget).toFixed(2)} ${trip.currency}`
+                    : `${(trip.budget - totalSpent).toFixed(2)} ${trip.currency} remaining`}
+                </Text>
+              </View>
+            )}
+
             {/* Category breakdown */}
             {topCategories.length > 0 && (
               <View style={styles.categorySection}>
@@ -337,5 +356,29 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginTop: 6,
     lineHeight: 18,
+  },
+  budgetRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    backgroundColor: '#fff',
+    borderRadius: 10,
+    padding: 12,
+    marginBottom: 14,
+    borderLeftWidth: 3,
+    borderLeftColor: '#4A90D9',
+  },
+  budgetLabel: {
+    fontSize: 13,
+    color: '#555',
+    fontWeight: '500',
+  },
+  budgetRemaining: {
+    fontSize: 13,
+    fontWeight: '700',
+    color: '#32CD32',
+  },
+  overBudget: {
+    color: '#FF6B6B',
   },
 });
