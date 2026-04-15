@@ -2,14 +2,12 @@ import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { getCategoryColor, getCategoryIcon } from '../utils/debtCalculator';
+import { formatShortDate } from '../utils/formatters';
 
 export default function ExpenseCard({ expense, currency = 'UAH', onDelete }) {
   const categoryColor = getCategoryColor(expense.category);
   const categoryIcon = getCategoryIcon(expense.category);
-  const date = new Date(expense.date).toLocaleDateString('uk-UA', {
-    day: '2-digit',
-    month: 'short',
-  });
+  const date = formatShortDate(expense.date);
 
   return (
     <View style={styles.card}>
