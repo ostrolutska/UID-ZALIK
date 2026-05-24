@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "TravelBudgetApp",
-    "slug": "travel-budget-app",
+    "name": "QuizApp",
+    "slug": "quiz-app",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -9,21 +9,18 @@
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#4A90D9"
+      "backgroundColor": "#6C63FF"
     },
     "ios": {
-      "supportsTablet": true,
-      "bundleIdentifier": "com.yourname.travelbudgetapp"
+      "supportsTablet": false,
+      "bundleIdentifier": "com.yourname.quizapp"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#4A90D9"
+        "backgroundColor": "#6C63FF"
       },
-      "package": "com.yourname.travelbudgetapp"
-    },
-    "web": {
-      "favicon": "./assets/favicon.png"
+      "package": "com.yourname.quizapp"
     }
   }
 }
