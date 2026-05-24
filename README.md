@@ -62,8 +62,8 @@ A mobile quiz application built with **React Native** and **Expo**. Test your ge
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/Artempug/TravelBudgetApp.git
-cd TravelBudgetApp
+git clone https://github.com/ostrolutska/UID-ZALIK.git
+cd UID-ZALIK
 
 # 2. Install dependencies
 npm install
@@ -148,4 +148,4 @@ Open `src/data/questions.js` and follow the existing format:
 
 ## 📄 License
 
-MIT © Artem Klimkov
+MIT © Eva Ostrolutska
